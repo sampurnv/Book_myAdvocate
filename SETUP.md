@@ -22,7 +22,7 @@ mysql -u root -p < database/setup.sql
 ## Step 2: Backend Setup
 
 ```bash
-cd server
+cd backend
 npm install
 npm start
 ```
@@ -32,7 +32,7 @@ Server will run on: http://localhost:5000
 ## Step 3: Frontend Setup
 
 ```bash
-cd client
+cd frontend
 npm install
 npm start
 ```
@@ -57,12 +57,12 @@ Application will run on: http://localhost:3000
 
 ### Database Connection Error
 - Check MySQL is running
-- Verify credentials in `server/.env`
+- Verify credentials in `backend/.env`
 - Ensure database `bookmyadvocate` exists
 
 ### Port Already in Use
-- Backend: Change PORT in `server/.env`
-- Frontend: Change port when prompted or set in `client/package.json`
+- Backend: Change PORT in `backend/.env`
+- Frontend: Change port when prompted or set in `frontend/package.json`
 
 ### Node Modules Error
 ```bash

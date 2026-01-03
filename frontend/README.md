@@ -37,9 +37,9 @@ React-based frontend application for BookMyAdvocate platform.
 
 ## Installation
 
-1. Navigate to the client directory:
+1. Navigate to the frontend directory:
 ```bash
-cd client
+cd frontend
 ```
 
 2. Install dependencies:
@@ -62,7 +62,7 @@ The app will open at `http://localhost:3000`
 ## Project Structure
 
 ```
-client/
+frontend/
 ├── public/
 │   └── index.html
 ├── src/
