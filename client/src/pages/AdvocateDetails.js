@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
@@ -20,11 +20,7 @@ const AdvocateDetails = () => {
     notes: ''
   });
 
-  useEffect(() => {
-    fetchAdvocateDetails();
-  }, [id]);
-
-  const fetchAdvocateDetails = async () => {
+  const fetchAdvocateDetails = useCallback(async () => {
     try {
       setLoading(true);
       const response = await api.get(`/advocates/${id}`);
@@ -37,7 +33,10 @@ const AdvocateDetails = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
+  useEffect(() => {
+    fetchAdvocateDetails();
+  }, [fetchAdvocateDetails]);
 
   const handleBookService = (service) => {
     if (!isAuthenticated) {
@@ -78,7 +77,7 @@ const AdvocateDetails = () => {
       const booking_date = `${year}-${month}-${day}`;
       const booking_time = `${hours}:${minutes}:${seconds}`;
 
-      const response = await api.post('/bookings', {
+      await api.post('/bookings', {
         advocate_id: parseInt(id),
         service_id: selectedService?.id || null,
         booking_date: booking_date,

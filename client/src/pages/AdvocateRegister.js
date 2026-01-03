@@ -16,18 +16,7 @@ const AdvocateRegister = () => {
   const { register } = useAuth();
   const navigate = useNavigate();
 
-  const specializations = [
-    'Criminal Law',
-    'Civil Law',
-    'Corporate Law',
-    'Family Law',
-    'Property Law',
-    'Tax Law',
-    'Labour Law',
-    'Constitutional Law',
-    'IPR Law',
-    'Other'
-  ];
+  // specializations list removed because it's not used in this form
 
   const handleChange = (e) => {
     setFormData({

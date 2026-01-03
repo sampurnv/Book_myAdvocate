@@ -28,7 +28,7 @@ const Register = () => {
     setLoading(true);
 
     try {
-      const response = await register(formData);
+      await register(formData);
       toast.success('Registration successful!');
       
       // Redirect based on role

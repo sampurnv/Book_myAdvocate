@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { advocateService } from '../services';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -26,11 +26,7 @@ const SearchAdvocates = () => {
     'Other'
   ];
 
-  useEffect(() => {
-    fetchAdvocates();
-  }, []);
-
-  const fetchAdvocates = async () => {
+  const fetchAdvocates = useCallback(async () => {
     try {
       setLoading(true);
       const data = await advocateService.search(filters);
@@ -40,7 +36,11 @@ const SearchAdvocates = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filters]);
+
+  useEffect(() => {
+    fetchAdvocates();
+  }, [fetchAdvocates]);
 
   const handleFilterChange = (e) => {
     setFilters({

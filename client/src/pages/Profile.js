@@ -4,7 +4,7 @@ import api from '../services/api';
 import './Profile.css';
 
 const Profile = () => {
-  const { user, setUser } = useAuth();
+  const { user } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(false);
   const [profileData, setProfileData] = useState({
@@ -35,12 +35,10 @@ const Profile = () => {
     setLoading(true);
 
     try {
-      const response = await api.put('/auth/profile', profileData);
-      
-      // Update user in AuthContext
+      await api.put('/auth/profile', profileData);
+      // Update user in localStorage
       const updatedUser = { ...user, ...profileData };
       localStorage.setItem('user', JSON.stringify(updatedUser));
-      
       alert('Profile updated successfully!');
       setIsEditing(false);
       
